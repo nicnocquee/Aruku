@@ -11,6 +11,37 @@
     <link rel="apple-touch-startup-image" href="images/splash-screen.png" />
     
     <script src="./js/libs/modernizr-custom.js"></script>
+    
+    <style type="text/css">
+     
+    		#appModeNote {
+    			background-color: #333333 ;
+    			border-top: 5px solid #000000 ;
+    			bottom: 0px ;
+    			color: #F0F0F0 ;
+    			display: none ;
+    			font-family: helvetica ;
+    			left: 0px ;
+    			padding: 10px 0px 10px 0px ;
+    			position: fixed ;
+    			text-align: center ;
+    			width: 100% ;
+    			}
+     
+    		#appModeNote em {
+    			display: block ;
+    			font-size: 20px ;
+    			font-weight: bold ;
+    			line-height: 26px ;
+    			}
+     
+    		#appModeNote span {
+    			display: block ;
+    			font-size: 14px ;
+    			line-height: 20px ;
+    			}
+     
+    	</style>
 
     <title>Aruku: Japanese-English Translation</title>
 </head>
@@ -18,6 +49,11 @@
 <div class="input">
 <input size="47" type="search" id="stringtotranslate" placeholder="English or Japanese here" />
 </div>
+
+<div id="appModeNote">
+		<em>Enjoy Aruku in Full Screen!</em>
+		<span>Use the "Add to Home Screen" Feature</span>
+	</div>
 <div id="search-results">
 
 </div>
@@ -29,6 +65,66 @@
 <script src="./js/jquery.cors.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		// to check full screen mode
+		// reference: http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm
+		
+		// Get a reference to the app mode note.
+		var appModeNote = $( "#appModeNote" );
+
+		// Get a reference to the body.
+		var body = $( document.body );
+
+		// Check to see if the window is running in app mode. If
+		// it is not, then we want to show the app mode note and
+		// bind some event listeners to the scroll.
+		if (
+			("standalone" in window.navigator) &&
+			!window.navigator.standalone
+			){
+
+			// This user is running in a "full screen ready"
+			// device, but is NOT using the full screen mode.
+			// Show the note about full screen.
+			appModeNote.show();
+
+			// Now that we have shown the note, we want to bind
+			// some special events to get rid of the note when
+			// the user tries to interact with the application.
+			//
+			// We are going to bind the touchStart and touchMove
+			// events such that when the user triggers these
+			// events, we will hide the app mode note.
+			//
+			// Notice that we are using nameSpaced events. This
+			// is to ensure that when we unbind the events (after
+			// the app mode note is removed), we don't remove any
+			// other critical event bindints.
+			body.bind(
+				"touchstart.appModeNote touchmove.appModeNote",
+				function( event ){
+					// Prevent the default events. We are doing
+					// this both to bring the note to the users
+					// attention... and because FIXED position
+					// elements on the "view port" are not truly
+					// fixed.
+					event.preventDefault();
+
+					// Unbind the current event handler such that
+					// the user's next attempt to interact with
+					// the screen is successful.
+					body.unbind( "touchstart.appModeNote touchmove.appModeNote" );
+
+					// Fade out the app mode, full screen note.
+					appModeNote.fadeOut( 500 );
+				}
+			);
+
+		}
+
+	});
+	
+	
+	
 		$('#stringtotranslate').keypress(function(event){
 			var keycode = (event.keyCode ? event.keyCode : event.which);
 			if(keycode == '13'){
