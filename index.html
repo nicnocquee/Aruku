@@ -9,35 +9,50 @@
     <link rel="apple-touch-icon" href="images/baka-icon-small.png"/>
 
     <link rel="apple-touch-startup-image" href="images/splash-screen.png" />
-    <link rel="stylesheet" href="/style.css?v=1" type="text/css" media="screen, mobile" title="main" charset="utf-8">
     
-    <script src="/js/libs/modernizr-custom.js"></script>
+    <script src="./js/libs/modernizr-custom.js"></script>
 
     <title>Aruku: Japanese-English Translation</title>
 </head>
 <body>
 <div class="input">
-<input size="60" type="search" id="stringtotranslate" placeholder="English or Japanese here" onsearch="onSearch()" />
+<input size="47" type="search" id="stringtotranslate" placeholder="English or Japanese here" />
+</div>
+<div id="search-results">
+
 </div>
 <div>
 </div>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="./js/jquery.blockUI.js"></script>
 <script type="text/javascript">
-	/*$("input[type='search']").bind('click', function(e) { 
-		if ( this.value=="") {//this just cleared!
-			alert("You either clicked the X or you searched for nothing.");
-		} 
-	});*/
-	
-    function onSearch() {
-    	var searchField = document.getElementById('stringtotranslate');
-        if(searchField.value == "") {
-            //alert("You either clicked the X or you searched for nothing.");
-        }
-        else {
-            alert("You searched for " + searchField.value);
-        }
-    }
+	$(document).ready(function() {
+		$('#stringtotranslate').keypress(function(event){
+			var keycode = (event.keyCode ? event.keyCode : event.which);
+			if(keycode == '13'){
+				$.blockUI({ css: { 
+				            border: 'none', 
+				            padding: '15px', 
+				            backgroundColor: '#000', 
+				            '-webkit-border-radius': '10px', 
+				            '-moz-border-radius': '10px', 
+				            opacity: .5, 
+				            color: '#fff' 
+				        } });
+				        
+				$.getJSON("http://viewtext.org/api/text?url=http://eow.alc.co.jp/" + encodeURI($("#stringtotranslate").val())+"/UTF-8/" + "&callback=?",
+				    function (data) {
+					    var content = $(data.content);
+					    var resultsList = content.find("#resultsList");
+					    console.log("done."+resultsList.html());
+					    $("#search-results").html(resultsList.html());
+					    $.unblockUI();
+				});	
+			}
+		 
+		});
+	});
 </script>
 </body>
 </html>
