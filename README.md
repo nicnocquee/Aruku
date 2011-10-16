@@ -1,6 +1,6 @@
 ## What is
 
-My first HTML5 app. Aruku is simple HTML5 Web app to make a request to [alc.co.jp](http://alc.co.jp) to **translate Japanese from and to English**. I really like alc cause their result of their translation is more useful than other services I've tried like Google Translate.
+Another weekend project of mine, my first HTML5 app. Aruku is a simple HTML5 Web app to make a request to [alc.co.jp](http://alc.co.jp) to **translate Japanese from and to English**. I really like alc cause the result of their translation is more useful than other services I've tried like Google Translate.
 
 ## Demo
 
@@ -22,7 +22,6 @@ Others' codes that I used here:
 1. [jQuery BlockUI Plugin](http://jquery.malsup.com/block/).
 2. [Web page fetch from PHP](http://nashruddin.com/fetching-a-web-page-from-php-code.html).
 3. [Detecting iPhone's App mode (Full Screen mode) for web applications](http://www.bennadel.com/blog/1950-Detecting-iPhone-s-App-Mode-Full-Screen-Mode-For-Web-Applications.htm).
-4. [CSS style file from Mobile HTML5 Boilerplate](http://html5boilerplate.com/mobile).
 
 
 
