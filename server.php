@@ -41,5 +41,5 @@ function fetch_page($url)
     return($body);
 }
 
-echo fetch_page('http://eow.alc.co.jp/'.$_GET['string_to_translate'].'/UTF-8/');
+echo json_encode(array('content' => fetch_page('http://eow.alc.co.jp/'.$_GET['string_to_translate'].'/UTF-8/')));
 ?>
