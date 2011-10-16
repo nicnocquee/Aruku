@@ -1,4 +1,7 @@
 <?php
+
+// fetch_page function is from http://nashruddin.com/fetching-a-web-page-from-php-code.html
+
 function fetch_page($url)
 {
     /* get hostname and path */
