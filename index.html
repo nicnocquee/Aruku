@@ -44,7 +44,7 @@
 				        } });
 				        
 				//$.getJSON("http://viewtext.org/api/text?url=http://eow.alc.co.jp/" + encodeURI($("#stringtotranslate").val())+"/UTF-8/" + "&callback=?",
-				$.get("./server.php?string_to_translate=" + encodeURI($("#stringtotranslate").val()),
+				$.getJSON("./server.php?string_to_translate=" + encodeURI($("#stringtotranslate").val()),
 				    function (data) {
 					    var content = $(data.content);
 					    var resultsList = content.find("#resultsList");
