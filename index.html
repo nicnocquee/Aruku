@@ -3,7 +3,7 @@
 <head>
 
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-   <!-- <meta name="apple-mobile-web-app-capable" content="yes" /> -->
+   <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="apple-touch-icon" href="images/baka-icon-small.png"/>
@@ -17,7 +17,10 @@
 </head>
 <body>
 <div class="input">
-<input size="50" type="search" placeholder="English or Japanese here" onsearch="onSearch(this)" />
+<input size="40" type="search" id="stringtotranslate" placeholder="English or Japanese here" onsearch="onSearch()" />
+</div>
+<div>
+<input type="button" value="Translate" onclick="onSearch()"/>
 </div>
 
 <script type="text/javascript">
@@ -27,12 +30,13 @@
 		} 
 	});*/
 	
-    function onSearch(input) {
-        if(input.value == "") {
+    function onSearch() {
+    	var searchField = document.getElementById('stringtotranslate');
+        if(searchField.value == "") {
             //alert("You either clicked the X or you searched for nothing.");
         }
         else {
-            //alert("You searched for " + input.value);
+            alert("You searched for " + searchField.value);
         }
     }
 </script>
