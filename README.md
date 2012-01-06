@@ -4,7 +4,7 @@ Another weekend project of mine, my first HTML5 app. Aruku is a simple HTML5 Web
 
 ## Demo
 
-Open Safari in your iPhone/iPod, go to [http://nicosakura.no-ip.info:8888/Aruku/](http://nicosakura.no-ip.info:8888/Aruku/)
+Open Safari in your iPhone/iPod, go to [http://nicosakura.no-ip.info/Aruku/](http://nicosakura.no-ip.info/Aruku/)
 
 ## Screenshots
 
